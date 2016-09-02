@@ -139,8 +139,8 @@ var board_string = "003020600900305001001806400008102900700000008006708200002609
 var game = new Sudoku(board_string)
 
 // Remember: this will just fill out what it can and not "guess"
-console.log("** Starting Board ***")
+console.log("**** Sudoku 1 ****")
 game.print_board()
 console.log("\n\n\n")
-console.log("**** Final Board ****")
+console.log("**** Sudoku 2 ****")
 game.solve()
