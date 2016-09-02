@@ -31,9 +31,10 @@ class Sudoku {
     // cek kotak kecil , ada duplikat ? ada -> true    . else false
     console.log(this.papan)
     //while(awalnya!=akhirnya){
-      for(var a = 0 ; a<akhirnya; a++){
-      if(this.rubahAngka(arrSemuaPosisiKosong[a]))awalnya++
-      }
+      //for(var a = 0 ; a<akhirnya; a++){
+        //if(ngulangLagi)a=0
+        this.rubahAngka(arrSemuaPosisiKosong,akhirnya)
+      //}
     //}
 
 
@@ -44,33 +45,67 @@ class Sudoku {
 
   }
 
-  rubahAngka(arrPosisi){
-    let baris = arrPosisi[0]
-    let kolom = arrPosisi[1]
-    let isi   = this.papan[baris][kolom]
+  rubahAngka(arrPosisi,akhirnya){
     let duplikatBaris = true
     let duplikatKolom = true
     let duplikatKotakKecil = true
-    let ngulangDariAwal = 1
-    console.log(this.papan);
 
-    while(duplikatBaris || duplikatKolom || duplikatKotakKecil)
-    {
-      //console.log("posisi yang mau di cek adalah posisi : "+arrPosisi
-      //          + " baris : " + baris
-      //          + " kolom : " + kolom
-      //          + " yang isinya adalah : "+this.papan[baris][kolom])
-      duplikatBaris = this.cekDuplikatBaris(arrPosisi)
-      duplikatKolom = this.cekDuplikatKolom(arrPosisi)
-      duplikatKotakKecil = this.cekDuplikatKotakKecil(arrPosisi)
-      if(duplikatBaris || duplikatKolom || duplikatKotakKecil){
-        this.papan[baris][kolom] = this.cetak1Sampai9().toString()
+    //cara maksa --> comment dibawah kalau dipasang, maka soal pertama bisa BENAR ! hore
+    //this.papan[5][6]='7'
+    //this.papan[6][1]='5'
+    //this.papan[8][8]='7'
+
+    for(var a=0 ; a<akhirnya ; a++){
+      //if(ngulangLagi)a=0
+      duplikatBaris = this.cekDuplikatBaris(arrPosisi[a])
+      duplikatKolom = this.cekDuplikatKolom(arrPosisi[a])
+      duplikatKotakKecil = this.cekDuplikatKotakKecil(arrPosisi[a])
+      while(duplikatBaris || duplikatKolom || duplikatKotakKecil)
+      {
+        duplikatBaris = this.cekDuplikatBaris(arrPosisi[a])
+        duplikatKolom = this.cekDuplikatKolom(arrPosisi[a])
+        duplikatKotakKecil = this.cekDuplikatKotakKecil(arrPosisi[a])
+
+
+
+
+
+        if((duplikatBaris || duplikatKolom || duplikatKotakKecil)){
+          this.papan[arrPosisi[a][0]][arrPosisi[a][1]] = this.cetak1Sampai9().toString()
+        }
+        console.log("----------------------------------------------------")
+        console.log(this.papan)
       }
-      console.log("----------------------------------------------------")
-      console.log(this.papan)
     }
-    return true
   }
+
+    // let baris = arrPosisi[0]
+    // let kolom = arrPosisi[1]
+    // let isi   = this.papan[baris][kolom]
+    // let duplikatBaris = true
+    // let duplikatKolom = true
+    // let duplikatKotakKecil = true
+    // let ngulangDariAwal = 1
+    // console.log(this.papan);
+    //
+    // while(duplikatBaris || duplikatKolom || duplikatKotakKecil)
+    // {
+    //   //console.log("posisi yang mau di cek adalah posisi : "+arrPosisi
+    //   //          + " baris : " + baris
+    //   //          + " kolom : " + kolom
+    //   //          + " yang isinya adalah : "+this.papan[baris][kolom])
+    //   if(ngulangLagi)break
+    //   duplikatBaris = this.cekDuplikatBaris(arrPosisi)
+    //   duplikatKolom = this.cekDuplikatKolom(arrPosisi)
+    //   duplikatKotakKecil = this.cekDuplikatKotakKecil(arrPosisi)
+    //   if((duplikatBaris || duplikatKolom || duplikatKotakKecil)){
+    //     this.papan[baris][kolom] = this.cetak1Sampai9().toString()
+    //   }
+    //   console.log("----------------------------------------------------")
+    //   console.log(this.papan)
+    // }
+    // return true
+  //}
 
   cekDuplikatKotakKecil(arrPosisi){
     let kumpulanKoordinat = this.setKumpulanKoordinatKotakKecil(arrPosisi)
@@ -80,8 +115,8 @@ class Sudoku {
     let jumlah = 0
     for(let a=0;a<9;a++){
       if(this.papan[kumpulanKoordinat[a][0]][kumpulanKoordinat[a][1]] == isi){
-        // console.log(kumpulanKoordinat[a][0] + "," + kumpulanKoordinat[a][1])
-        // console.log(this.board()[kumpulanKoordinat[a][0]][kumpulanKoordinat[a][1]])
+         //console.log(kumpulanKoordinat[a][0] + "," + kumpulanKoordinat[a][1])
+         //console.log(this.board()[kumpulanKoordinat[a][0]][kumpulanKoordinat[a][1]])
         jumlah++
       }
     }
@@ -143,6 +178,7 @@ class Sudoku {
       return 1
     }
     else {
+      ngulangLagi=false
       keluarAngka+=1
       return keluarAngka-1
   }
