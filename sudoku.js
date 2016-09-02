@@ -9,7 +9,8 @@ const KOTAK_TENGAH_KANAN=[[3,6],[3,7],[3,8],[4,6],[4,7],[4,8],[5,6],[5,7],[5,8]]
 const KOTAK_KIRI_BAWAH  =[[6,0],[6,1],[6,2],[7,0],[7,1],[7,2],[8,0],[8,1],[8,2]]
 const KOTAK_TENGAH_BAWAH=[[6,3],[6,4],[6,5],[7,3],[7,4],[7,5],[8,3],[8,4],[8,5]]
 const KOTAK_KANAN_BAWAH =[[6,6],[6,7],[6,8],[7,6],[7,7],[7,8],[8,6],[8,7],[8,8]]
-
+let ngulangLagi = false
+let keluarAngka = 1
 
 class Sudoku {
   constructor(board_string) {
@@ -20,7 +21,6 @@ class Sudoku {
   solve() {
     this.papan = this.board()
     let arrSemuaPosisiKosong = this.arrSemuaPosisiKosong(this.papan)
-    let randomIsian = this.randomAngka1Sampai9()
     let awalnya  = 0
     let akhirnya = arrSemuaPosisiKosong.length
     let total    = false
@@ -30,11 +30,11 @@ class Sudoku {
     // cel kolom. ad duplicate ? ada -> true   . else false
     // cek kotak kecil , ada duplikat ? ada -> true    . else false
     console.log(this.papan)
-    while(awalnya!=akhirnya){
-      for(var a = 0 ; a<akhirnya ; a++){
+    //while(awalnya!=akhirnya){
+      for(var a = 0 ; a<akhirnya; a++){
       if(this.rubahAngka(arrSemuaPosisiKosong[a]))awalnya++
       }
-    }
+    //}
 
 
     //console.log(arrSemuaPosisiKosong[0])
@@ -51,7 +51,7 @@ class Sudoku {
     let duplikatBaris = true
     let duplikatKolom = true
     let duplikatKotakKecil = true
-
+    let ngulangDariAwal = 1
     console.log(this.papan);
 
     while(duplikatBaris || duplikatKolom || duplikatKotakKecil)
@@ -63,8 +63,10 @@ class Sudoku {
       duplikatBaris = this.cekDuplikatBaris(arrPosisi)
       duplikatKolom = this.cekDuplikatKolom(arrPosisi)
       duplikatKotakKecil = this.cekDuplikatKotakKecil(arrPosisi)
-      if(duplikatBaris || duplikatKolom || duplikatKotakKecil)this.papan[baris][kolom] = this.randomAngka1Sampai9().toString()
-      console.log("setelah random jadinya ")
+      if(duplikatBaris || duplikatKolom || duplikatKotakKecil){
+        this.papan[baris][kolom] = this.cetak1Sampai9().toString()
+      }
+      console.log("----------------------------------------------------")
       console.log(this.papan)
     }
     return true
@@ -134,9 +136,17 @@ class Sudoku {
     }
   }
 
-  randomAngka1Sampai9(){
-    return Math.floor(Math.random() * (9 - 1 + 1)) + 1
+  cetak1Sampai9(){
+    if(keluarAngka>9){
+      ngulangLagi=true
+      keluarAngka=1
+      return 1
+    }
+    else {
+      keluarAngka+=1
+      return keluarAngka-1
   }
+}
 
   arrSemuaPosisiKosong(papan){
     let baris = []
