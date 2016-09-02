@@ -29,7 +29,7 @@ class Sudoku {
     // cek baris. ad duplicate ? ada -> true   . else false
     // cel kolom. ad duplicate ? ada -> true   . else false
     // cek kotak kecil , ada duplikat ? ada -> true    . else false
-    console.log("akhirnya :"+akhirnya )
+    console.log(this.papan)
     while(awalnya!=akhirnya){
       for(var a = 0 ; a<akhirnya ; a++){
       if(this.rubahAngka(arrSemuaPosisiKosong[a]))awalnya++
@@ -56,10 +56,10 @@ class Sudoku {
 
     while(duplikatBaris || duplikatKolom || duplikatKotakKecil)
     {
-      console.log("posisi yang mau di cek adalah posisi : "+arrPosisi
-                + " baris : " + baris
-                + " kolom : " + kolom
-                + " yang isinya adalah : "+this.papan[baris][kolom])
+      //console.log("posisi yang mau di cek adalah posisi : "+arrPosisi
+      //          + " baris : " + baris
+      //          + " kolom : " + kolom
+      //          + " yang isinya adalah : "+this.papan[baris][kolom])
       duplikatBaris = this.cekDuplikatBaris(arrPosisi)
       duplikatKolom = this.cekDuplikatKolom(arrPosisi)
       duplikatKotakKecil = this.cekDuplikatKotakKecil(arrPosisi)
@@ -84,11 +84,11 @@ class Sudoku {
       }
     }
     if (jumlah>1){
-      console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat kotak kecil? : " + true)
+      //console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat kotak kecil? : " + true)
       return true
     }
     else{
-      console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat kotak kecil? : " + false)
+      //console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat kotak kecil? : " + false)
       return false
     }
   }
@@ -105,11 +105,11 @@ class Sudoku {
       }
     }
     if (jumlah>1){
-      console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat kolom? : " + true)
+      //console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat kolom? : " + true)
       return true
     }
     else{
-      console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat kolom? : " + false)
+      //console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat kolom? : " + false)
       return false
     }
   }
@@ -125,11 +125,11 @@ class Sudoku {
       }
     }
     if (jumlah>1){
-      console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat baris? : " + true)
+      //console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat baris? : " + true)
       return true
     }
     else{
-      console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat baris? : " + false)
+      //console.log("baris " + baris +" kolom " + kolom+ " isi angka : " + isi + " cek duplikat baris? : " + false)
       return false
     }
   }
