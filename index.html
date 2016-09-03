@@ -1,5 +1,7 @@
 
 <script>
+
+
 var sudokuboard = [];
 
 let solve = () => {
@@ -11,26 +13,31 @@ var i = 0;
         if(sudokuboard[i][k] != '0')   number.splice(number.indexOf(+(sudokuboard[i][k])),1)
       }
 
-
       for(let j=0;j<9;j++) {
             if(sudokuboard[i][j] ==='0'){
-              for (let l = 0; l < 9; l++) {// check baris
-                if(sudokuboard[l][j] != '0')   number.splice(number.indexOf(+(sudokuboard[l][j])),1)
-              }
-
-
             sudokuboard[i][j] = String(number.pop())
           }
 
 
       }
-      //sudokuboard[0][i-1] += i
+      //clearsudokuboard[0][i-1] += i
 
   }
-  console.log(sudokuboard);
+  console.log("=======SUDOKU BOARD================");
+  for (i=0;i<9;i++){
+    sudokuboard.push(sudokuboard[i])
 
 
-  console.log("=======SUDOKU BOARD======");
+     //temptBoard[i].splice(6,0,"||")
+     //temptBoard[i].splice(3,0,"||")
+
+
+            //sudokuboard[i].splice(3,0,"||")
+   console.log(sudokuboard[i].join("  ").replace(/0/g," "));
+   if((i+1)%3===0 && i!=0) console.log("===================================");
+  }
+
+
   // for (i=0;i<9;i++){
   //   console.log(sudokuboard[i].join("  ").replace(/0/g," "));
   //   if((i+1)%3===0 && i!=0) console.log("=========================");
@@ -46,8 +53,7 @@ let sudoku_2_chooseoal = (soal) => {
   let end = 0
   let word = ""
   //var fs = require('fs')
-  var words = "105802000090076405200400819019007306762083090000061050007600030430020501600308900"
-  //fs.readFileSync('set-01_sample.unsolved.txt')
+  var words = "105802000090076405200400819019007306762083090000061050007600030430020501600308900"//fs.readFileSync('set-01_sample.unsolved.txt')
     //.toString().split("\n").join("")
   if (soal == 1 ){
     start = 0
@@ -75,21 +81,20 @@ let sudoku_board = (value,baris,kolom) =>{
     sudokuboard.push(value.slice(i,i+chunk))
 
   }
-
   let temptBoard =[]
   //  console.log(sudokuboard);
-    console.log("=======SUDOKU BOARD======");
+    console.log("=======SUDOKU BOARD================");
     for (i=0;i<9;i++){
       temptBoard.push(sudokuboard[i])
 
 
-      // temptBoard[i].splice(6,0,"||")
-      // temptBoard[i].splice(3,0,"||")
+       //temptBoard[i].splice(6,0,"||")
+       //temptBoard[i].splice(3,0,"||")
 
 
               //sudokuboard[i].splice(3,0,"||")
-                  console.log(temptBoard[i].join("  ").replace(/0/g," "));
-     if((i+1)%3===0 && i!=0) console.log("=========================");
+     console.log(temptBoard[i].join("  ").replace(/0/g," "));
+     if((i+1)%3===0 && i!=0) console.log("===================================");
     }
 
 }
