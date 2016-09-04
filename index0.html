@@ -5,8 +5,6 @@
 let sudokuboard = [];
 let unfilled = []
 let temporaryUnfilled = []
-let temporarySudokuBoard = []
-let alldouble = false
 let solve2 = () =>{
   let unfilledLengthBefore  = unfilled.length
   for (var i = 0; i < unfilled.length; i++) {
@@ -25,10 +23,6 @@ let solve2 = () =>{
   print_board(sudokuboard)
   if(unfilledLengthBefore === unfilled.length){
     if(unfilled[0][2]){
-      alldouble = true
-      for(let i = 0; i < sudokuboard.length ; i++){
-          temporarySudokuBoard.push(sudokuboard[i].slice())
-      }
       let tryUP = unfilled[0][3].pop()
       temporaryUnfilled = unfilled.slice()
       sudokuboard[unfilled[0][0]][unfilled[0][1]] = tryUP
@@ -44,6 +38,15 @@ let solverecursive = (sudokuboard,x,y,i) =>{
   if(checknumber) {
     checknumber = checksub(checknumber,(~~(x/3))*3,(~~(y/3))*3)
   console.log(checknumber.join(","))
+} else{
+  console.log("buntu kemabli keatas")
+  unfilled = temporaryUnfilled.slice()
+  temporaryUnfilled = []
+  let tryAgain = unfilled[0][3].pop()
+  temporaryUnfilled = unfilled.slice()
+  unfilled.splice(0,1)
+  sudokuboard[unfilled[0][0]][unfilled[0][1]] = tryAgain
+  solve2()
 }
 //   if(checknumber){
 //   for (var i = 0; i < checknumber.length; i++) {
@@ -63,17 +66,7 @@ if(checknumber && checknumber.length == 1){
   if(!unfilled[i][2]){
     unfilled[i].push(checknumber)
   } else{
-    if(checknumber){
     unfilled[i][3] = checknumber
-  } else{
-    unfilled = temporaryUnfilled.slice()
-    let tryAgain = temporaryUnfilled[0][3].pop()
-    sudokuboard = []
-    sudokuboard = temporarySudokuBoard.slice()
-    sudokuboard[unfilled[0][0]][unfilled[0][1]] = tryAgain
-    unfilled.slice(0,1)
-    solve2()
-  }
   }
   unfilled[i][2] = true
 }
